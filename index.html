@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0%;
+            padding: 0%;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;padding: 20px 0px;
+        }
+
+        .container {
+            background-image: url(img.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            gap: 20px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            border-radius: 20px;
+            height: 500px;
+            width: 100%;
+            margin: 100px auto;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        @media only screen and (min-width:1000px) {
+            .container {
+                width: 800px;
+            }
+        }
+
+        .body {
+            background-image: url(3607424.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            height: 742px;
+        }
+
+        button {
+            width: 110px;
+            height: 80px;
+            position: relative;
+            border: 3px ridge #149CEA;
+            outline: none;
+            background-color: transparent;
+            color: white;
+            transition: 1s;
+            border-radius: 0.3em;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0px 10px;
+
+        }
+
+        button::after {
+            content: "";
+            position: absolute;
+            top: -4px;
+            left: 3%;
+            width: 95%;
+            height: 10%;
+            background-color: #000000;
+            transition: 0.5s;
+            transform-origin: center;
+        }
+
+        button::before {
+            content: "";
+            transform-origin: center;
+            position: absolute;
+            top: 72px;
+            left: 3%;
+            width: 95%;
+            height: 10%;
+            background-color: #000000;
+            transition: 0.5s;
+        }
+
+        button:hover::before,
+        button:hover::after {
+            transform: scale(0)
+        }
+
+        button:hover {
+            box-shadow: inset 0px 0px 25px #1479EA;
+        }
+
+        #rock img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #paper img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #scissor img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .reset img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .btn {
+            padding: 0px 20px;
+            display: flex;
+        }
+
+        .scoure {
+            display: flex;
+            gap: 50px;
+
+            font-size: 20px;
+        }
+
+        #win {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body">
+        <h1>Rock, Paper and Scissor Game </h1>
+        <div class="container">
+            <div class="text">
+                <h1>Choose one option</h1>
+                <div class="scoure">
+                    <p id="Player">Player : 0 </p>
+                    <p id="Comp">Computer : 0 </p>
+                </div>
+            </div>
+            <div id="result"></div>
+            <br>
+            <br>
+            <div class="btn">
+                <button id="rock" onclick="result('rock'),Print()">
+                    <img src="https://media.tenor.com/1Ew3IkLGOAYAAAAj/%E3%81%98%E3%82%83%E3%82%93%E3%81%91%E3%82%93-rock-paper-scissors.gif"
+                        alt=""></button>
+                <button id="paper" onclick="result('paper'),Print()"><img
+                        src="https://media.tenor.com/xTZYcijDYAEAAAAj/%E3%81%98%E3%82%83%E3%82%93%E3%81%91%E3%82%93-rock-paper-scissors.gif"
+                        alt=""></button>
+                <button id="scissor" onclick="result('scissor'),Print()"><img
+                        src="https://media.tenor.com/y53nevUh_0wAAAAj/%E3%81%98%E3%82%83%E3%82%93%E3%81%91%E3%82%93-rock-paper-scissors.gif"
+                        alt=""></button>
+
+                <button class="reset" onclick="reset()"><img
+                        src="https://media.tenor.com/ia9eM21b2LsAAAAj/counter-clockwise-symbols.gif" alt=""></button>
+            </div>
+            <div id="win">Select option to find winner</div>
+
+        </div>
+    </div>
+    <script>
+        let Player = 0
+        let Comp = 0
+        let para = document.getElementById('win')
+        function result(user) {
+
+            let game = ['rock', 'paper', 'scissor']
+            let PC_choice = game[Math.floor(Math.random() * 3)];
+            if (user == PC_choice) {
+                para.innerHTML = "Match is TIE"
+            }
+            else if (user == 'rock' && PC_choice == 'scissor' || user == 'scissor' && PC_choice == 'paper' || user == 'paper' && PC_choice == 'rock') {
+                para.innerHTML = "Winner is : " + "User"
+                Player++
+            }
+            else {
+                para.innerHTML = "Winner is : " + "PC"
+                Comp++
+            }
+        }
+        let user = document.getElementById('Player')
+        let com = document.getElementById('Comp')
+
+        function reset() {
+            Player = 0
+            Comp = 0
+            user.innerHTML = "Player : " + Player;
+            com.innerHTML = "Computer : " + Comp
+        }
+
+        function Print() {
+            user.innerHTML = "Player : " + Player;
+            com.innerHTML = "Computer : " + Comp
+        }
+
+    </script>
+</body>
+
+</html>
